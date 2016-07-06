@@ -8,12 +8,13 @@ angular
 
 // CONTROLLER
 hangmanCtrl.$inject = ["$scope"];
-  function hangmanCtrl($scope) {
-    // new game
-    $scope.hangman = new HangmanGame("hiphopopotomous");
-    $scope.guessLetter = function (input) {
-      $scope.hangman.guess(input);
-      $scope.hangman.input = "";
-    };
-
-  }
+function hangmanCtrl($scope) {
+  // new game
+  $scope.hangman = new HangmanGame("hiphopopotomous");
+  $scope.guessLetter = function() {
+    // guesses a letter
+    $scope.hangman.guess($scope.userGuess);
+    // clears the input
+    $scope.userGuess = "";
+  };
+}
