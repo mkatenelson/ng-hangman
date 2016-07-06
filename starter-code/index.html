@@ -25,13 +25,15 @@ _________
 |___                                        hang-man
 
     </pre>
+
+
     <div class='col-sm-12 col-md-6 col-md-offset-3 text-center'>
-      ? tries remaining
+      {{ hangman.triesRemaining }} tries remaining
     </div>
   </div>
   <div class='row'>
     <div class='col-sm-12 text-center'>
-      <span class="label label-default">SOLVING:</span>
+      <span class="label label-default">SOLVING: {{ hangman.completedWord }}</span>
     </div>
     <div class='col-sm-12 text-center'>
       <span class='wide'></span>
@@ -40,9 +42,10 @@ _________
 
   <div class='row'>
     <div class='col-sm-12 text-center'>
-      <span class="label label-default">GUESSES: </span>
+      <span class="label label-default">GUESSES: {{ hangman.guess }}</span>
     </div>
     <div class='col-sm-12 text-center' id='guesses'>
+      <span ng-repeat="prevGuess in hangman.guesses"> {{prevGuess}} </span>
     </div>
   </div>
 
@@ -51,12 +54,12 @@ _________
       <span class="label label-default">INPUT:</span>
     </div>
     <div class="col-sm-12 text-center">
-      <input type='text' size='1' id='guess'>
+      <input ng-model="hangman.input" ng-change="guessLetter(hangman.input)" type='text' size='1' id='guess'>
     </div>
   </div>
   <div class='row' id='statuses'>
     <div class='col-sm-1 table small-font'>Win status:
-      <span class='glyphicon'></span>
+      <span class='glyphicon' ng-class="hangman.gameWon ? 'glyphicon-ok' : 'glyphicon-remove'"></span>
     </div>
   </div>
 </div>
